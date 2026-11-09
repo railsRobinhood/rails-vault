@@ -1,0 +1,17 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+solc = "0.8.28"
+optimizer = true
+optimizer_runs = 400
+
+[profile.default.fuzz]
+runs = 400
+max_test_rejects = 65536
+
+[lint]
+# block-timestamp is inherent to this design: signal 03 uses fixed clock buckets
+# (timestamp/1h, /1d) and signal 04 is a timestamp delay. Sub-block manipulation is
+# an accepted, documented property of the product.
+exclude_lints = ["block-timestamp"]
